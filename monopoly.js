@@ -794,18 +794,18 @@ function Game() {
 		var isAPropertySelected = 0;
 
 		// Ensure that some properties are selected.
-		for (var i = 0; i < 40; i++) {
-			isAPropertySelected |= tradeObj.getProperty(i);
-		}
+		// for (var i = 0; i < 40; i++) {
+		// 	isAPropertySelected |= tradeObj.getProperty(i);
+		// }
 
-		isAPropertySelected |= tradeObj.getCommunityChestJailCard();
-		isAPropertySelected |= tradeObj.getChanceJailCard();
+		// isAPropertySelected |= tradeObj.getCommunityChestJailCard();
+		// isAPropertySelected |= tradeObj.getChanceJailCard();
 
-		if (isAPropertySelected === 0) {
-			popup("<p>One or more properties must be selected in order to trade.</p>");
+		// if (isAPropertySelected === 0) {
+		// 	popup("<p>One or more properties must be selected in order to trade.</p>");
 
-			return false;
-		}
+		// 	return false;
+		// }
 
 		if (showAlerts && !confirm(initiator.name + ", are you sure you want to make this exchange with " + recipient.name + "?")) {
 			return false;
@@ -912,11 +912,11 @@ function Game() {
 		isAPropertySelected |= tradeObj.getCommunityChestJailCard();
 		isAPropertySelected |= tradeObj.getChanceJailCard();
 
-		if (isAPropertySelected === 0) {
-			popup("<p>One or more properties must be selected in order to trade.</p>");
+		// if (isAPropertySelected === 0) {
+		// 	popup("<p>One or more properties must be selected in order to trade.</p>");
 
-			return false;
-		}
+		// 	return false;
+		// }
 
 		if (initiator.human && !confirm(initiator.name + ", are you sure you want to make this offer to " + recipient.name + "?")) {
 			return false;
