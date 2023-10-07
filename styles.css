@@ -77,6 +77,9 @@ td {
 	border-spacing: 3px;
 	margin: 25px;
 	float: left;
+	background-image: url('https://img.natgeomedia.com/userfiles/sm/sm1920_images_A1/3604/61088454959.jpg');
+    background-size: cover; /* This will ensure the image covers the entire table */
+    background-repeat: no-repeat; /* This will ensure the image doesn't repeat */
 }
 
 #jail {
