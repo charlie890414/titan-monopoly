@@ -1825,6 +1825,14 @@ function addamount(amount, cause) {
 	addAlert(p.name + " received $" + amount + " from " + cause + ".");
 }
 
+function addo(amount, cause) {
+	var p = player[turn];
+
+	p.oxygen += amount;
+
+	addAlert(p.name + " received O2" + amount + " from " + cause + ".");
+}
+
 function subtractamount(amount, cause) {
 	var p = player[turn];
 
@@ -2417,10 +2425,10 @@ function land(increasedRent) {
 		document.getElementById("landed").innerHTML = "You landed on " + s.name + ". Property is mortgaged; no rent was collected.";
 	}
 
-	// City Tax
-	if (p.position === 4) {
-		citytax();
-	}
+	// // City Tax
+	// if (p.position === 4) {
+	// 	citytax();
+	// }
 
 	// Go to jail. Go directly to Camp area. Do not pass GO. Do not collect $200.
 	if (p.position === 30) {
@@ -2436,10 +2444,10 @@ function land(increasedRent) {
 		return;
 	}
 
-	// Luxury Tax
-	if (p.position === 38) {
-		luxurytax();
-	}
+	// // Luxury Tax
+	// if (p.position === 38) {
+	// 	luxurytax();
+	// }
 
 	updateMoney();
 	updatePosition();
@@ -2863,7 +2871,7 @@ window.onload = function() {
 	// Add images to enlarges.
 	document.getElementById("enlarge0token").innerHTML += '<img src="images/arrow_icon.png" height="40" width="136" alt="" />';
 	document.getElementById("enlarge20price").innerHTML += "<img src='images/free_parking_icon.png' height='80' width='72' alt='' style='position: relative; top: -20px;' />";
-	document.getElementById("enlarge38token").innerHTML += '<img src="images/tax_icon.png" height="60" width="70" alt="" style="position: relative; top: -20px;" />';
+	// document.getElementById("enlarge38token").innerHTML += '<img src="images/tax_icon.png" height="60" width="70" alt="" style="position: relative; top: -20px;" />';
 
 	corrections();
 
