@@ -100,7 +100,7 @@ square[26] = new Square("Deloitte & Touche LLP", "$260", "yellow", 260, 8, 22, 1
 square[27] = new Square("SmithBarney", "$260", "yellow", 260, 8, 22, 110, 330, 800, 975, 1150);
 square[28] = new Square("Con Edison Gas", "$150", "white", 150, 2);
 square[29] = new Square("CITIBANK", "$280", "yellow", 280, 8, 24, 120, 360, 850, 1025, 1200);
-square[30] = new Square("Go to Jail", "Go directly to Jail. Do not pass GO. Do not collect $200.", "white");
+square[30] = new Square("Go to Camp area", "Go directly to Camp area. Do not pass GO. Do not collect $200.", "white");
 square[31] = new Square("The Regency Hotel", "$300", "green", 300, 9, 26, 130, 390, 900, 1100, 1275);
 square[32] = new Square("Essex House", "$300", "green", 300, 9, 26, 130, 390, 900, 1100, 1275);
 square[33] = new Square("Community Chest", "FOLLOW INSTRUCTIONS ON TOP CARD", "white");
@@ -114,7 +114,7 @@ square[39] = new Square("TRUMP TOWER", "$400", "blue", 400, 10, 50, 200, 600, 14
 var communityChestCards = [];
 var chanceCards = [];
 
-communityChestCards[0] = new Card("Get out of Jail, Free. This card may be kept until needed or sold.", function() { p.communityChestJailCard = true; updateOwned();});
+communityChestCards[0] = new Card("Get out of Camp area, Free. This card may be kept until needed or sold.", function() { p.communityChestJailCard = true; updateOwned();});
 communityChestCards[1] = new Card("You have won lifetime home delivery of the New York Times. Collect $10", function() { addamount(10, 'Community Chest');});
 communityChestCards[2] = new Card("From sale of Macy's stock, you get $45", function() { addamount(45, 'Community Chest');});
 communityChestCards[3] = new Card("Life insurance matures. Collect $100", function() { addamount(100, 'Community Chest');});
@@ -129,10 +129,10 @@ communityChestCards[11] = new Card("Doctor's fee. Pay $50", function() { subtrac
 communityChestCards[12] = new Card("Madison Square Garden opening tonight. Collect $50 from every player for opening night seats.", function() { collectfromeachplayer(50, 'Community Chest');});
 communityChestCards[13] = new Card("You have won kiss cash! Advance to GO (Collect $200)", function() { advance(0);});
 communityChestCards[14] = new Card("You are assessed for street repairs. $40 per house. $115 per hotel.", function() { streetrepairs(40, 115);});
-communityChestCards[15] = new Card("Go to Jail. Go directly to Jail. Do not pass GO. Do not collect $200.", function() { gotojail();});
+communityChestCards[15] = new Card("Go to Camp area. Go directly to Camp area. Do not pass GO. Do not collect $200.", function() { gotojail();});
 
 
-chanceCards[0] = new Card("Get out of Jail free. This card may be kept until needed or sold.", function() { p.chanceJailCard=true; updateOwned();});
+chanceCards[0] = new Card("Get out of Camp area free. This card may be kept until needed or sold.", function() { p.chanceJailCard=true; updateOwned();});
 chanceCards[1] = new Card("Make general repairs on all your property. For each house pay $25. For each hotel $100.", function() { streetrepairs(25, 100);});
 chanceCards[2] = new Card("Pay poor tax of $15.", function() { subtractamount(15, 'Chance');});
 chanceCards[3] = new Card("You have been elected chairman of Con Edison. Pay each player $50.", function() { payeachplayer(50, 'Chance');});
@@ -147,4 +147,4 @@ chanceCards[11] = new Card("Advance to thirteen.", function() { advance(13);});
 chanceCards[12] = new Card("Your Smith Barney mutual fund pays dividend. Collect $150.", function() { addamount(150, 'Chance');});
 chanceCards[13] = new Card("Advance token to the nearest Transportation and pay owner Twice the Rental to which they are otherwise entitled.\n\nIf Transportation is unowned, you may buy it from the Bank.", function() { advanceToNearestRailroad();});
 chanceCards[14] = new Card("Catch a bus to Central Park. If you pass GO, collect $200.", function() { advance(9);});
-chanceCards[15] = new Card("Go directly to Jail. Do not pass GO, do not collect $200.", function() { gotojail();});
+chanceCards[15] = new Card("Go directly to Camp area. Do not pass GO, do not collect $200.", function() { gotojail();});

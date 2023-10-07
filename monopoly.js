@@ -475,7 +475,7 @@ function Game() {
 			currentTableCellCheckbox = currentTableCell.appendChild(document.createElement("input"));
 			currentTableCellCheckbox.type = "checkbox";
 			currentTableCellCheckbox.id = "tradeleftcheckbox40";
-			currentTableCellCheckbox.title = "Check this box to include this Get Out of Jail Free Card in the trade.";
+			currentTableCellCheckbox.title = "Check this box to include this Get Out of Camp area Free Card in the trade.";
 
 			currentTableCell = currentTableRow.appendChild(document.createElement("td"));
 			currentTableCell.className = "propertycellcolor";
@@ -485,7 +485,7 @@ function Game() {
 			currentTableCell = currentTableRow.appendChild(document.createElement("td"));
 			currentTableCell.className = "propertycellname";
 
-			currentTableCell.textContent = "Get Out of Jail Free Card";
+			currentTableCell.textContent = "Get Out of Camp area Free Card";
 		} else if (recipient.communityChestJailCard) {
 			currentTableRow = recipientSideTable.appendChild(document.createElement("tr"));
 			currentTableRow.onclick = tableRowOnClick;
@@ -495,7 +495,7 @@ function Game() {
 			currentTableCellCheckbox = currentTableCell.appendChild(document.createElement("input"));
 			currentTableCellCheckbox.type = "checkbox";
 			currentTableCellCheckbox.id = "traderightcheckbox40";
-			currentTableCellCheckbox.title = "Check this box to include this Get Out of Jail Free Card in the trade.";
+			currentTableCellCheckbox.title = "Check this box to include this Get Out of Camp area Free Card in the trade.";
 
 			currentTableCell = currentTableRow.appendChild(document.createElement("td"));
 			currentTableCell.className = "propertycellcolor";
@@ -505,7 +505,7 @@ function Game() {
 			currentTableCell = currentTableRow.appendChild(document.createElement("td"));
 			currentTableCell.className = "propertycellname";
 
-			currentTableCell.textContent = "Get Out of Jail Free Card";
+			currentTableCell.textContent = "Get Out of Camp area Free Card";
 		}
 
 		if (initiator.chanceJailCard) {
@@ -517,7 +517,7 @@ function Game() {
 			currentTableCellCheckbox = currentTableCell.appendChild(document.createElement("input"));
 			currentTableCellCheckbox.type = "checkbox";
 			currentTableCellCheckbox.id = "tradeleftcheckbox41";
-			currentTableCellCheckbox.title = "Check this box to include this Get Out of Jail Free Card in the trade.";
+			currentTableCellCheckbox.title = "Check this box to include this Get Out of Camp area Free Card in the trade.";
 
 			currentTableCell = currentTableRow.appendChild(document.createElement("td"));
 			currentTableCell.className = "propertycellcolor";
@@ -527,7 +527,7 @@ function Game() {
 			currentTableCell = currentTableRow.appendChild(document.createElement("td"));
 			currentTableCell.className = "propertycellname";
 
-			currentTableCell.textContent = "Get Out of Jail Free Card";
+			currentTableCell.textContent = "Get Out of Camp area Free Card";
 		} else if (recipient.chanceJailCard) {
 			currentTableRow = recipientSideTable.appendChild(document.createElement("tr"));
 			currentTableRow.onclick = tableRowOnClick;
@@ -537,7 +537,7 @@ function Game() {
 			currentTableCellCheckbox = currentTableCell.appendChild(document.createElement("input"));
 			currentTableCellCheckbox.type = "checkbox";
 			currentTableCellCheckbox.id = "traderightcheckbox41";
-			currentTableCellCheckbox.title = "Check this box to include this Get Out of Jail Free Card in the trade.";
+			currentTableCellCheckbox.title = "Check this box to include this Get Out of Camp area Free Card in the trade.";
 
 			currentTableCell = currentTableRow.appendChild(document.createElement("td"));
 			currentTableCell.className = "propertycellcolor";
@@ -547,7 +547,7 @@ function Game() {
 			currentTableCell = currentTableRow.appendChild(document.createElement("td"));
 			currentTableCell.className = "propertycellname";
 
-			currentTableCell.textContent = "Get Out of Jail Free Card";
+			currentTableCell.textContent = "Get Out of Camp area Free Card";
 		}
 
 		if (initiatorSideTable.lastChild) {
@@ -817,21 +817,21 @@ function Game() {
 		if (tradeObj.getCommunityChestJailCard() === 1) {
 			initiator.communityChestJailCard = false;
 			recipient.communityChestJailCard = true;
-			addAlert(recipient.name + ' received a "Get Out of Jail Free" card from ' + initiator.name + ".");
+			addAlert(recipient.name + ' received a "Get Out of Camp area Free" card from ' + initiator.name + ".");
 		} else if (tradeObj.getCommunityChestJailCard() === -1) {
 			initiator.communityChestJailCard = true;
 			recipient.communityChestJailCard = false;
-			addAlert(initiator.name + ' received a "Get Out of Jail Free" card from ' + recipient.name + ".");
+			addAlert(initiator.name + ' received a "Get Out of Camp area Free" card from ' + recipient.name + ".");
 		}
 
 		if (tradeObj.getChanceJailCard() === 1) {
 			initiator.chanceJailCard = false;
 			recipient.chanceJailCard = true;
-			addAlert(recipient.name + ' received a "Get Out of Jail Free" card from ' + initiator.name + ".");
+			addAlert(recipient.name + ' received a "Get Out of Camp area Free" card from ' + initiator.name + ".");
 		} else if (tradeObj.getChanceJailCard() === -1) {
 			initiator.chanceJailCard = true;
 			recipient.chanceJailCard = false;
-			addAlert(initiator.name + ' received a "Get Out of Jail Free" card from ' + recipient.name + ".");
+			addAlert(initiator.name + ' received a "Get Out of Camp area Free" card from ' + recipient.name + ".");
 		}
 
 		// Exchange money.
@@ -1505,7 +1505,7 @@ function updateOwned() {
 			firstproperty = 40;
 			HTML += "<table>";
 		}
-		HTML += "<tr class='property-cell-row'><td class='propertycellcheckbox'><input type='checkbox' id='propertycheckbox40' /></td><td class='propertycellcolor' style='background: white;'></td><td class='propertycellname'>Get Out of Jail Free Card</td></tr>";
+		HTML += "<tr class='property-cell-row'><td class='propertycellcheckbox'><input type='checkbox' id='propertycheckbox40' /></td><td class='propertycellcolor' style='background: white;'></td><td class='propertycellname'>Get Out of Camp area Free Card</td></tr>";
 
 	}
 	if (p.chanceJailCard) {
@@ -1513,7 +1513,7 @@ function updateOwned() {
 			firstproperty = 41;
 			HTML += "<table>";
 		}
-		HTML += "<tr class='property-cell-row'><td class='propertycellcheckbox'><input type='checkbox' id='propertycheckbox41' /></td><td class='propertycellcolor' style='background: white;'></td><td class='propertycellname'>Get Out of Jail Free Card</td></tr>";
+		HTML += "<tr class='property-cell-row'><td class='propertycellcheckbox'><input type='checkbox' id='propertycheckbox41' /></td><td class='propertycellcolor' style='background: white;'></td><td class='propertycellname'>Get Out of Camp area Free Card</td></tr>";
 	}
 
 	if (HTML === "") {
@@ -2018,7 +2018,7 @@ function useJailCard() {
 		}
 	}
 
-	addAlert(p.name + " used a \"Get Out of Jail Free\" card.");
+	addAlert(p.name + " used a \"Get Out of Camp area Free\" card.");
 	updateOwned();
 	updatePosition();
 }
@@ -2142,7 +2142,7 @@ function showStats() {
 				write = true;
 				HTML += "<table>";
 			}
-			HTML += "<tr><td class='statscellcolor'></td><td class='statscellname'>Get Out of Jail Free Card</td></tr>";
+			HTML += "<tr><td class='statscellcolor'></td><td class='statscellname'>Get Out of Camp area Free Card</td></tr>";
 
 		}
 		if (p.chanceJailCard) {
@@ -2150,7 +2150,7 @@ function showStats() {
 				write = true;
 				HTML += "<table>";
 			}
-			HTML += "<tr><td class='statscellcolor'></td><td class='statscellname'>Get Out of Jail Free Card</td></tr>";
+			HTML += "<tr><td class='statscellcolor'></td><td class='statscellname'>Get Out of Camp area Free Card</td></tr>";
 
 		}
 
@@ -2389,13 +2389,13 @@ function land(increasedRent) {
 		citytax();
 	}
 
-	// Go to jail. Go directly to Jail. Do not pass GO. Do not collect $200.
+	// Go to jail. Go directly to Camp area. Do not pass GO. Do not collect $200.
 	if (p.position === 30) {
 		updateMoney();
 		updatePosition();
 
 		if (p.human) {
-			popup("<div>Go to jail. Go directly to Jail. Do not pass GO. Do not collect $200.</div>", gotojail);
+			popup("<div>Go to jail. Go directly to Camp area. Do not pass GO. Do not collect $200.</div>", gotojail);
 		} else {
 			gotojail();
 		}
@@ -2461,7 +2461,7 @@ function roll() {
 
 
 			if (p.human) {
-				popup("You rolled doubles three times in a row. Go to jail.", gotojail);
+				popup("You rolled doubles three times in a row. Back to Camp area.", gotojail);
 			} else {
 				gotojail();
 			}
@@ -2576,7 +2576,7 @@ function play() {
 		document.getElementById("landed").innerHTML = "You are in jail.<input type='button' title='Pay $50 fine to get out of jail immediately.' value='Pay $50 fine' onclick='payfifty();' />";
 
 		if (p.communityChestJailCard || p.chanceJailCard) {
-			document.getElementById("landed").innerHTML += "<input type='button' id='gojfbutton' title='Use &quot;Get Out of Jail Free&quot; card.' onclick='useJailCard();' value='Use Card' />";
+			document.getElementById("landed").innerHTML += "<input type='button' id='gojfbutton' title='Use &quot;Get Out of Camp area Free&quot; card.' onclick='useJailCard();' value='Use Card' />";
 		}
 
 		document.getElementById("nextbutton").title = "Roll the dice. If you throw doubles, you will get out of jail.";
@@ -2828,15 +2828,15 @@ window.onload = function() {
 
 	corrections();
 
-	// Jail corrections
+	// Camp area corrections
 	$("<div>", {id: "jailpositionholder" }).appendTo("#jail");
-	$("<span>").text("Jail").appendTo("#jail");
+	$("<span>").text("Camp area").appendTo("#jail");
 
 	document.getElementById("jail").enlargeId = "enlarge40";
 
-	document.getElementById("enlarge-wrap").innerHTML += "<div id='enlarge40' class='enlarge'><div id='enlarge40color' class='enlarge-color'></div><br /><div id='enlarge40name' class='enlarge-name'>Jail</div><br /><div id='enlarge40price' class='enlarge-price'><img src='images/jake_icon.png' height='80' width='80' alt='' style='position: relative; top: -20px;' /></div><br /><div id='enlarge40token' class='enlarge-token'></div></div>";
+	document.getElementById("enlarge-wrap").innerHTML += "<div id='enlarge40' class='enlarge'><div id='enlarge40color' class='enlarge-color'></div><br /><div id='enlarge40name' class='enlarge-name'>Camp area</div><br /><div id='enlarge40price' class='enlarge-price'><img src='images/jake_icon.png' height='80' width='80' alt='' style='position: relative; top: -20px;' /></div><br /><div id='enlarge40token' class='enlarge-token'></div></div>";
 
-	document.getElementById("enlarge40name").innerHTML = "Jail";
+	document.getElementById("enlarge40name").innerHTML = "Camp area";
 
 	// Create event handlers for hovering and draging.
 

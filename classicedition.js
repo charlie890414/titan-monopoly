@@ -100,7 +100,7 @@ square[26] = new Square("Atlantic Avenue", "$260", "#FFFF00", 260, 8, 22, 110, 3
 square[27] = new Square("Ventnor Avenue", "$260", "#FFFF00", 260, 8, 22, 110, 330, 800, 975, 1150);
 square[28] = new Square("Water Works", "$150", "#FFFFFF", 150, 2);
 square[29] = new Square("Marvin Gardens", "$280", "#FFFF00", 280, 8, 24, 120, 360, 850, 1025, 1200);
-square[30] = new Square("Go to Jail", "Go directly to Jail. Do not pass GO. Do not collect $200.", "#FFFFFF");
+square[30] = new Square("Go to Camp area", "Go directly to Camp area. Do not pass GO. Do not collect $200.", "#FFFFFF");
 square[31] = new Square("Pacific Avenue", "$300", "#008000", 300, 9, 26, 130, 390, 900, 1100, 1275);
 square[32] = new Square("North Carolina Avenue", "$300", "#008000", 300, 9, 26, 130, 390, 900, 1100, 1275);
 square[33] = new Square("Community Chest", "FOLLOW INSTRUCTIONS ON TOP CARD", "#FFFFFF");
@@ -114,7 +114,7 @@ square[39] = new Square("Boardwalk", "$400", "#0000FF", 400, 10, 50, 200, 600, 1
 var communityChestCards = [];
 var chanceCards = [];
 
-communityChestCards[0] = new Card("Get out of Jail, Free. This card may be kept until needed or sold.", function(p) { p.communityChestJailCard = true; updateOwned();});
+communityChestCards[0] = new Card("Get out of Camp area, Free. This card may be kept until needed or sold.", function(p) { p.communityChestJailCard = true; updateOwned();});
 communityChestCards[1] = new Card("You have won second prize in a beauty contest. Collect $10.", function() { addamount(10, 'Community Chest');});
 communityChestCards[2] = new Card("From sale of stock, you get $50.", function() { addamount(50, 'Community Chest');});
 communityChestCards[3] = new Card("Life insurance matures. Collect $100.", function() { addamount(100, 'Community Chest');});
@@ -129,7 +129,7 @@ communityChestCards[11] = new Card("Doctor's fee. Pay $50.", function() { subtra
 communityChestCards[12] = new Card("It is your birthday. Collect $10 from every player.", function() { collectfromeachplayer(10, 'Community Chest');});
 communityChestCards[13] = new Card("Advance to \"GO\" (Collect $200).", function() { advance(0);});
 communityChestCards[14] = new Card("You are assessed for street repairs. $40 per house. $115 per hotel.", function() { streetrepairs(40, 115);});
-communityChestCards[15] = new Card("Go to Jail. Go directly to Jail. Do not pass \"GO\". Do not collect $200.", function() { gotojail();});
+communityChestCards[15] = new Card("Go to Camp area. Go directly to Camp area. Do not pass \"GO\". Do not collect $200.", function() { gotojail();});
 
 
 chanceCards[0] = new Card("GET OUT OF JAIL FREE. This card may be kept until needed or traded.", function(p) { p.chanceJailCard=true; updateOwned();});
@@ -147,4 +147,4 @@ chanceCards[11] = new Card("ADVANCE to Illinois Avenue. If you pass \"GO\" colle
 chanceCards[12] = new Card("Your building loan matures. Collect $150.", function() { addamount(150, 'Chance');});
 chanceCards[13] = new Card("ADVANCE TO THE NEAREST RAILROAD. If UNOWNED, you may buy it from the Bank. If OWNED, pay owner twice the rental to which they are otherwise entitled.", function() { advanceToNearestRailroad();});
 chanceCards[14] = new Card("ADVANCE to St. Charles Place. If you pass \"GO\" collect $200.", function() { advance(11);});
-chanceCards[15] = new Card("Go to Jail. Go Directly to Jail. Do not pass \"GO\". Do not collect $200.", function() { gotojail();});
+chanceCards[15] = new Card("Go to Camp area. Go Directly to Camp area. Do not pass \"GO\". Do not collect $200.", function() { gotojail();});
