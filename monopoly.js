@@ -2591,6 +2591,10 @@ function play() {
 
 	turn++;
 	if (turn > pcount) {
+		// decrease oxygen every round
+		for(let i=1;i <= pcount;i++) {
+			player[i].oxygen -= 20;
+		}
 		turn -= pcount;
 	}
 
