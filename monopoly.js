@@ -1113,7 +1113,7 @@ function Player(name, color) {
 	this.color = color;
 	this.position = 0;
 	this.money = 1500;
-	this.oxygen = 1500;
+	this.oxygen = 100;
 	this.creditor = -1;
 	this.jail = false;
 	this.jailroll = 0;
@@ -1367,7 +1367,7 @@ function updateMoney() {
 	var p = player[turn];
 
 	document.getElementById("pmoney").innerHTML = "$" + p.money;
-	document.getElementById("poxygen").innerHTML = "#" + p.oxygen;
+	document.getElementById("poxygen").innerHTML = "O<sub>2</sub>" + p.oxygen;
 	document.getElementById("playerphoto").src = `images/${p.name}.png`;
 	$(".money-bar-row").hide();
 
