@@ -44,6 +44,16 @@ td {
 	user-select: none;
 }
 
+#playerphoto {
+	position: fixed;
+	max-width: 400px;
+	min-width: 135px;
+	bottom: 0px;
+	right: 0px;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
 #propertystats {
 	margin-right: 110px;
 }

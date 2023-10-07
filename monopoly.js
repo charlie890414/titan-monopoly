@@ -1367,6 +1367,7 @@ function updateMoney() {
 
 	document.getElementById("pmoney").innerHTML = "$" + p.money;
 	document.getElementById("poxygen").innerHTML = "#" + p.oxygen;
+	document.getElementById("playerphoto").src = `images/${p.name}.png`;
 	$(".money-bar-row").hide();
 
 	for (var i = 1; i <= pcount; i++) {
