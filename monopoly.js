@@ -1112,6 +1112,7 @@ function Player(name, color) {
 	this.color = color;
 	this.position = 0;
 	this.money = 1500;
+	this.oxygen = 1500;
 	this.creditor = -1;
 	this.jail = false;
 	this.jailroll = 0;
@@ -1119,6 +1120,7 @@ function Player(name, color) {
 	this.chanceJailCard = false;
 	this.bidding = true;
 	this.human = true;
+	this.role = null;
 	// this.AI = null;
 
 	this.pay = function (amount, creditor) {
@@ -1372,7 +1374,9 @@ function updateMoney() {
 		$("#moneybarrow" + i).show();
 		document.getElementById("p" + i + "moneybar").style.border = "2px solid " + p_i.color;
 		document.getElementById("p" + i + "money").innerHTML = p_i.money;
+		document.getElementById("p" + i + "oxygen").innerHTML = p_i.oxygen;
 		document.getElementById("p" + i + "moneyname").innerHTML = p_i.name;
+		document.getElementById("p" + i + "role").innerHTML = p_i.role;
 	}
 
 	if (document.getElementById("landed").innerHTML === "") {
