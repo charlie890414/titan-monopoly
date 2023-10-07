@@ -161,6 +161,7 @@ function Game() {
 	};
 
 	this.auctionPass = function() {
+		return;
 		if (highestbidder === 0) {
 			highestbidder = currentbidder;
 		}
@@ -173,7 +174,6 @@ function Game() {
 			}
 
 			if (currentbidder == highestbidder) {
-				finalizeAuction();
 				return;
 			} else if (player[currentbidder].bidding) {
 				var p = player[currentbidder];
@@ -1077,7 +1077,7 @@ function Game() {
 
 				if (p.creditor === 0) {
 					sq.mortgage = false;
-					game.addPropertyToAuctionQueue(i);
+					// game.addPropertyToAuctionQueue(i);
 					sq.owner = 0;
 				}
 			}
@@ -2248,6 +2248,12 @@ function hidedeed() {
 
 function buy() {
 	var p = player[turn];
+
+	// only Pioneer can build
+	if(p.role != "Pioneer"){
+		return;
+	}
+
 	var property = square[p.position];
 	var cost = property.price;
 
@@ -2335,11 +2341,11 @@ function land(increasedRent) {
 				buy();
 			}
 		} else {
-			document.getElementById("landed").innerHTML = "<div>You landed on <a href='javascript:void(0);' onmouseover='showdeed(" + p.position + ");' onmouseout='hidedeed();' class='statscellcolor'>" + s.name + "</a>.<input type='button' onclick='buy();' value='Buy ($" + s.price + ")' title='Buy " + s.name + " for " + s.pricetext + ".'/></div>";
+			document.getElementById("landed").innerHTML = "<div>You landed on <a href='javascript:void(0);' onmouseover='showdeed(" + p.position + ");' onmouseout='hidedeed();' class='statscellcolor'>" + s.name + "</a>.<input " + (p.role == "Pioneer" ? "": "disabled") + " type='button' onclick='buy();' value='Buy ($" + s.price + ")' title='Buy " + s.name + " for " + s.pricetext + ".'/></div>";
 		}
 
 
-		game.addPropertyToAuctionQueue(p.position);
+		// game.addPropertyToAuctionQueue(p.position);
 	}
 
 	// Collect rent
