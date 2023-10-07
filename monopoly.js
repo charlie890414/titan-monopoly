@@ -575,7 +575,11 @@ function Game() {
 
 			nameSelect = currentName.appendChild(document.createElement("select"));
 			for (var i = 1; i <= pcount; i++) {
-				if (i === initiator.index) {
+				if (i === initiator.index || i % 10 == 0) {
+					continue;
+				}
+
+				if (parseInt(player[i].position / 10) != parseInt(player[initiator.index].position / 10)) {
 					continue;
 				}
 
@@ -707,6 +711,11 @@ function Game() {
 	};
 
 	this.trade = function(tradeObj) {
+		if(player[turn].role != "Transporter"){
+			popup("<p>You are not transporter!</p>")
+			return;
+		}
+
 		$("#board").hide();
 		$("#control").hide();
 		$("#trade").show();
