@@ -1366,6 +1366,7 @@ function updateMoney() {
 	var p = player[turn];
 
 	document.getElementById("pmoney").innerHTML = "$" + p.money;
+	document.getElementById("poxygen").innerHTML = "#" + p.oxygen;
 	$(".money-bar-row").hide();
 
 	for (var i = 1; i <= pcount; i++) {
