@@ -1,6 +1,7 @@
 function Game() {
 	var die1;
 	var die2;
+	var die3;
 	var areDiceRolled = false;
 
 	var auctionQueue = [];
@@ -12,6 +13,7 @@ function Game() {
 	this.rollDice = function() {
 		die1 = Math.floor(Math.random() * 6) + 1;
 		die2 = Math.floor(Math.random() * 6) + 1;
+		die3 = Math.floor(Math.random() * 6) + 1;
 		areDiceRolled = true;
 	};
 
@@ -37,13 +39,12 @@ function Game() {
 
 	this.getDie = function(die) {
 		if (die === 1) {
-
 			return die1;
-		} else {
-
+		} else if (die === 2) {
 			return die2;
+		} else if (die === 3) {
+			return die3;
 		}
-
 	};
 
 
@@ -1401,9 +1402,15 @@ function updateMoney() {
 function updateDice() {
 	var die0 = game.getDie(1);
 	var die1 = game.getDie(2);
+	var die2 = game.getDie(3);
+	var p = player[turn];
 
 	$("#die0").show();
 	$("#die1").show();
+
+	if(p.role == "Pioneer") {
+		$("#die2").show();
+	}
 
 	if (document.images) {
 		var element0 = document.getElementById("die0");
@@ -1432,12 +1439,32 @@ function updateDice() {
 
 		element1.src = "images/Die_" + die1 + ".png";
 		element1.alt = die0;
+
+		if(p.role == "Pioneer") {
+			var element2 = document.getElementById("die2");
+			element2.classList.remove("die-no-img");
+			element2.title = "Die (" + die2 + " spots)";
+
+			if (element2.firstChild) {
+				element2 = element2.firstChild;
+			} else {
+				element2 = element2.appendChild(document.createElement("img"));
+			}
+
+			element2.src = "images/Die_" + die2 + ".png";
+			element2.alt = die2;
+		}
 	} else {
 		document.getElementById("die0").textContent = die0;
 		document.getElementById("die1").textContent = die1;
 
 		document.getElementById("die0").title = "Die";
 		document.getElementById("die1").title = "Die";
+
+		if(p.role == "Pioneer") {
+			document.getElementById("die2").textContent = die2;
+			document.getElementById("die2").title = "Die";
+		}
 	}
 }
 
@@ -2436,13 +2463,14 @@ function roll() {
 	game.rollDice();
 	var die1 = game.getDie(1);
 	var die2 = game.getDie(2);
+	var die3 = game.getDie(3);
 
 	doublecount++;
 
 	if (die1 == die2) {
-		addAlert(p.name + " rolled " + (die1 + die2) + " - doubles.");
+		addAlert(p.name + " rolled " + (p.role != "Pioneer"? die1 + die2: die1 + die2 + die3) + " - doubles.");
 	} else {
-		addAlert(p.name + " rolled " + (die1 + die2) + ".");
+		addAlert(p.name + " rolled " + (p.role != "Pioneer"? die1 + die2: die1 + die2 + die3) + ".");
 	}
 
 	if (die1 == die2 && !p.jail) {
@@ -2492,7 +2520,7 @@ function roll() {
 			p.position = 10 + die1 + die2;
 			doublecount = 0;
 
-			addAlert(p.name + " rolled doubles to get out of jail.");
+			addAlert(p.name + " rolled doubles to get out of camp.");
 
 			land();
 		} else {
@@ -2526,6 +2554,10 @@ function roll() {
 
 		// Move player
 		p.position += die1 + die2;
+
+		if(p.role == "Pioneer") {
+			p.position += die3;
+		}
 
 		// Collect $200 salary as you pass GO
 		if (p.position >= 40) {
@@ -2570,6 +2602,7 @@ function play() {
 
 	$("#die0").hide();
 	$("#die1").hide();
+	$("#die2").hide();
 
 	if (p.jail) {
 		$("#landed").show();
