@@ -70,7 +70,7 @@ function luxurytax() {
 
 var square = [];
 
-square[0] = new Square("GO", "COLLECT $200 SALARY AS YOU PASS.", "white");
+square[0] = new Square("GO", "COLLECT $200 minerals AS YOU PASS.", "white");
 square[1] = new Square("Kraken Mare", "$60", "#4B0082", 60, 3, 2, 10, 30, 90, 160, 250);
 square[2] = new Square("Community Chest", "FOLLOW INSTRUCTIONS ON TOP CARD", "white");
 square[3] = new Square("Ligeia Mare", "$60", "#4B0082", 60, 3, 4, 20, 60, 180, 320, 450);
@@ -123,6 +123,19 @@ var chanceCards = [];
 communityChestCards[0] = new Card("Rapid Medical Card for Camp area, Free. This card may be kept until needed or sold.", function() { p.communityChestJailCard = true; updateOwned();});
 communityChestCards[1] = new Card("Oxygen consumption is less than expected, gain 10 oxygen.", function() { addO2(10, 'Community Chest');});
 communityChestCards[2] = new Card("Acquiring a temporary oxygen recycling system, gain 30 oxygen.", function() { addO2(30, 'Community Chest');});
+communityChestCards[3] = new Card("Rapid Medical Card for Camp area, Free. This card may be kept until needed or sold.", function() { p.communityChestJailCard = true; updateOwned();});
+communityChestCards[4] = new Card("Oxygen consumption is less than expected, gain 10 oxygen.", function() { addO2(10, 'Community Chest');});
+communityChestCards[5] = new Card("Acquiring a temporary oxygen recycling system, gain 30 oxygen.", function() { addO2(30, 'Community Chest');});
+communityChestCards[6] = new Card("Rapid Medical Card for Camp area, Free. This card may be kept until needed or sold.", function() { p.communityChestJailCard = true; updateOwned();});
+communityChestCards[7] = new Card("Oxygen consumption is less than expected, gain 10 oxygen.", function() { addO2(10, 'Community Chest');});
+communityChestCards[8] = new Card("Acquiring a temporary oxygen recycling system, gain 30 oxygen.", function() { addO2(30, 'Community Chest');});
+communityChestCards[9] = new Card("Rapid Medical Card for Camp area, Free. This card may be kept until needed or sold.", function() { p.communityChestJailCard = true; updateOwned();});
+communityChestCards[10] = new Card("Oxygen consumption is less than expected, gain 10 oxygen.", function() { addO2(10, 'Community Chest');});
+communityChestCards[11] = new Card("Acquiring a temporary oxygen recycling system, gain 30 oxygen.", function() { addO2(30, 'Community Chest');});
+communityChestCards[12] = new Card("Rapid Medical Card for Camp area, Free. This card may be kept until needed or sold.", function() { p.communityChestJailCard = true; updateOwned();});
+communityChestCards[13] = new Card("Oxygen consumption is less than expected, gain 10 oxygen.", function() { addO2(10, 'Community Chest');});
+communityChestCards[14] = new Card("Acquiring a temporary oxygen recycling system, gain 30 oxygen.", function() { addO2(30, 'Community Chest');});
+communityChestCards[15] = new Card("Oxygen consumption is less than expected, gain 10 oxygen.", function() { addO2(10, 'Community Chest');});
 
 // communityChestCards[1] = new Card("You have won lifetime home delivery of the New York Times. Collect $10", function() { addamount(10, 'Community Chest');});
 // communityChestCards[2] = new Card("From sale of Macy's stock, you get $45", function() { addamount(45, 'Community Chest');});
@@ -142,18 +155,28 @@ communityChestCards[2] = new Card("Acquiring a temporary oxygen recycling system
 
 
 chanceCards[0] = new Card("Get out of Camp area free. This card may be kept until needed or sold.", function() { p.chanceJailCard=true; updateOwned();});
-chanceCards[1] = new Card("Make general repairs on all your property. For each house pay $25. For each hotel $100.", function() { streetrepairs(25, 100);});
-chanceCards[2] = new Card("Pay poor tax of $15.", function() { subtractamount(15, 'Chance');});
-chanceCards[3] = new Card("You have been elected chairman of Con Edison. Pay each player $50.", function() { payeachplayer(50, 'Chance');});
-chanceCards[4] = new Card("Go back 3 spaces.", function() { gobackthreespaces();});
-chanceCards[5] = new Card("Advance token to the nearest Con Edison utility. If UNOWNED you may buy it from the bank. If OWNED, throw dice and pay owner a total of ten times the amount thrown.", function() { advanceToNearestUtility();});
-chanceCards[6] = new Card("Citibank pays you interest of $50.", function() { addamount(50, 'Chance');});
-chanceCards[7] = new Card("Advance token to the nearest Transportation and pay owner Twice the Rental to which they are otherwise entitled. If Transportation is unowned, you may buy it from the Bank.", function() { advanceToNearestRailroad();});
-chanceCards[8] = new Card("Take a walk past The Essex House. Advance to GO. Collect $200.", function() { advance(0,32);});
-chanceCards[9] = new Card("Take a ride to the Regency Hotel! If you pass GO collect $200.", function() { advance(31);});
-chanceCards[10] = new Card("Take a walk on fifth avenue. Advance token to Trump Tower.", function() { advance(39);});
-chanceCards[11] = new Card("Advance to thirteen.", function() { advance(13);});
-chanceCards[12] = new Card("Your Smith Barney mutual fund pays dividend. Collect $150.", function() { addamount(150, 'Chance');});
-chanceCards[13] = new Card("Advance token to the nearest Transportation and pay owner Twice the Rental to which they are otherwise entitled.\n\nIf Transportation is unowned, you may buy it from the Bank.", function() { advanceToNearestRailroad();});
-chanceCards[14] = new Card("Catch a bus to Central Park. If you pass GO, collect $200.", function() { advance(9);});
-chanceCards[15] = new Card("Go directly to Camp area. Do not pass GO, do not collect $200.", function() { gotojail();});
+chanceCards[1] = new Card("Volcanic Activity: Sudden volcanic eruptions of ice and ammonia on Titan affect nearby areas. Lose 10 minerals.", function() { subtractamount(10, 'Chance');});
+chanceCards[2] = new Card("Methane Downpour: Intense methane rainfalls on Titan affect players' movement. Go back 3 spaces.", function() { gobackthreespaces();});
+chanceCards[3] = new Card("Ice Sheet Collapse: Ice sheets on Titan collapse suddenly, forming new terrain or exposing hidden resources. Get 20 minerals.",  function() { addamount(20, 'Chance');});
+chanceCards[4] = new Card("Solar Storm Warning: Solar activity releases high-energy particles threatening equipment and astronauts on Titan. Go back 3 spaces.", function() { gobackthreespaces();});
+chanceCards[5] = new Card("Dune Shifting: Strong winds on Titan shift dunes, altering the terrain.", function() { advance(0,32);});
+chanceCards[6] = new Card("Volcanic Activity: Sudden volcanic eruptions of ice and ammonia on Titan affect nearby areas. Lose 10 minerals.", function() { subtractamount(10, 'Chance');});
+chanceCards[7] = new Card("Methane Downpour: Intense methane rainfalls on Titan affect players' movement. Go back 3 spaces.", function() { gobackthreespaces();});
+chanceCards[8] = new Card("Ice Sheet Collapse: Ice sheets on Titan collapse suddenly, forming new terrain or exposing hidden resources. Get 20 minerals.",  function() { addamount(20, 'Chance');});
+chanceCards[9] = new Card("Solar Storm Warning: Solar activity releases high-energy particles threatening equipment and astronauts on Titan. Go back 3 spaces.", function() { gobackthreespaces();});
+chanceCards[10] = new Card("Dune Shifting: Strong winds on Titan shift dunes, altering the terrain.", function() { advance(0,32);});
+chanceCards[11] = new Card("Volcanic Activity: Sudden volcanic eruptions of ice and ammonia on Titan affect nearby areas. Lose 10 minerals.", function() { subtractamount(10, 'Chance');});
+chanceCards[12] = new Card("Methane Downpour: Intense methane rainfalls on Titan affect players' movement. Go back 3 spaces.", function() { gobackthreespaces();});
+chanceCards[13] = new Card("Ice Sheet Collapse: Ice sheets on Titan collapse suddenly, forming new terrain or exposing hidden resources. Get 20 minerals.",  function() { addamount(20, 'Chance');});
+chanceCards[14] = new Card("Solar Storm Warning: Solar activity releases high-energy particles threatening equipment and astronauts on Titan. Go back 3 spaces.", function() { gobackthreespaces();});
+chanceCards[15] = new Card("Dune Shifting: Strong winds on Titan shift dunes, altering the terrain.", function() { advance(0,32);});
+
+// chanceCards[7] = new Card("Advance token to the nearest Transportation and pay owner Twice the Rental to which they are otherwise entitled. If Transportation is unowned, you may buy it from the Bank.", function() { advanceToNearestRailroad();});
+// chanceCards[8] = new Card("Take a walk past The Essex House. Advance to GO. Collect $200.", function() { advance(0,32);});
+// chanceCards[9] = new Card("Take a ride to the Regency Hotel! If you pass GO collect $200.", function() { advance(31);});
+// chanceCards[10] = new Card("Take a walk on fifth avenue. Advance token to Trump Tower.", function() { advance(39);});
+// chanceCards[11] = new Card("Advance to thirteen.", function() { advance(13);});
+// chanceCards[12] = new Card("Your Smith Barney mutual fund pays dividend. Collect $150.", function() { addamount(150, 'Chance');});
+// chanceCards[13] = new Card("Advance token to the nearest Transportation and pay owner Twice the Rental to which they are otherwise entitled.\n\nIf Transportation is unowned, you may buy it from the Bank.", function() { advanceToNearestRailroad();});
+// chanceCards[14] = new Card("Catch a bus to Central Park. If you pass GO, collect $200.", function() { advance(9);});
+// chanceCards[15] = new Card("Go directly to Camp area. Do not pass GO, do not collect $200.", function() { gotojail();});

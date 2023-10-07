@@ -1834,7 +1834,7 @@ function addamount(amount, cause) {
 	addAlert(p.name + " received $" + amount + " from " + cause + ".");
 }
 
-function addo(amount, cause) {
+function addO2(amount, cause) {
 	var p = player[turn];
 
 	p.oxygen += amount;
@@ -1930,7 +1930,7 @@ function advance(destination, pass) {
 		} else {
 			p.position = pass;
 			p.money += 200;
-			addAlert(p.name + " collected a $200 salary for passing GO.");
+			addAlert(p.name + " collected a $200 minerals for passing GO.");
 		}
 	}
 	if (p.position < destination) {
@@ -1938,7 +1938,7 @@ function advance(destination, pass) {
 	} else {
 		p.position = destination;
 		p.money += 200;
-		addAlert(p.name + " collected a $200 salary for passing GO.");
+		addAlert(p.name + " collected a $200 minerals for passing GO.");
 	}
 
 	land();
@@ -1954,7 +1954,7 @@ function advanceToNearestUtility() {
 	} else if (p.position >= 28) {
 		p.position = 12;
 		p.money += 200;
-		addAlert(p.name + " collected a $200 salary for passing GO.");
+		addAlert(p.name + " collected a $200 minerals for passing GO.");
 	}
 
 	land(true);
@@ -1972,7 +1972,7 @@ function advanceToNearestRailroad() {
 	} else if (p.position >= 35) {
 		p.position = 5;
 		p.money += 200;
-		addAlert(p.name + " collected a $200 salary for passing GO.");
+		addAlert(p.name + " collected a $200 minerals for passing GO.");
 	}
 
 	land(true);
@@ -2582,11 +2582,11 @@ function roll() {
 			p.position += die3;
 		}
 
-		// Collect $200 salary as you pass GO
+		// Collect $200 minerals as you pass GO
 		if (p.position >= 40) {
 			p.position -= 40;
 			p.money += 200;
-			addAlert(p.name + " collected a $200 salary for passing GO.");
+			addAlert(p.name + " collected a $200 minerals for passing GO.");
 		}
 
 		land();
