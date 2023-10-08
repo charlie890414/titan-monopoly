@@ -1388,8 +1388,8 @@ function updatePosition() {
 function updateMoney() {
 	var p = player[turn];
 
-	document.getElementById("pmoney").innerHTML = "$" + p.money;
-	document.getElementById("poxygen").innerHTML = "O<sub>2</sub>" + p.oxygen;
+	document.getElementById("pmoney").innerHTML = "Material: " + p.money;
+	document.getElementById("poxygen").innerHTML = "     Gas: " + p.oxygen;
 	document.getElementById("playerphoto").src = `images/${p.name}.png`;
 	$(".money-bar-row").hide();
 
