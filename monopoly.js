@@ -602,6 +602,8 @@ function Game() {
 			currentName.textContent = recipient.name;
 		}
 
+		document.getElementById("trade-leftp-oxygen").value = "0";
+		document.getElementById("trade-rightp-oxygen").value = "0";
 		document.getElementById("trade-leftp-money").value = "0";
 		document.getElementById("trade-rightp-money").value = "0";
 
@@ -1272,7 +1274,7 @@ function popup(HTML, action, option) {
 	
 	// building options
 	} else if(option === "building") {
-		document.getElementById("popuptext").innerHTML += "<div><input type=\"button\" value=\"O<sub>2</sub>\" id=\"popupOxygen\" /><input type=\"button\" value=\"Material\" id=\"popupMoney\" /></div>";
+		document.getElementById("popuptext").innerHTML += "<div><input type=\"button\" value=\"Oxygen\" id=\"popupOxygen\" /><input type=\"button\" value=\"Material\" id=\"popupMoney\" /></div>";
 
 		$("#popupOxygen, #popupMoney").on("click", function() {
 			$("#popupwrap").hide();
