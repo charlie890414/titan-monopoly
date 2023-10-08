@@ -1188,7 +1188,7 @@ function Trade(initiator, recipient, money, property, communityChestJailCard, ch
 
 var player = [];
 var pcount;
-var turn = 0, doublecount = 0;
+var turn = 0, doublecount = 0, round = 0, first_round = 1;
 // Overwrite an array with numbers from one to the array's length in a random order.
 Array.prototype.randomize = function(length) {
 	length = (length || this.length);
@@ -2621,13 +2621,39 @@ function play() {
 	}
 
 	turn++;
+
+	if (round == 0 && first_round == 1){
+		popup('<p>Chapater 1 - Maria led the team to Titan, this mysterious satellite. Upon landing, they immediately felt the thick atmosphere of nitrogen and the leisurely flowing lakes of liquid methane on Titan. Marias wilderness survival skills helped them quickly adapt to this alien environment and ensured the teams safety.</p><img src="https://i.imgur.com/c7sfRjR.jpg" width="250"  />')
+		first_round = 0;
+	}
+
 	if (turn > pcount) {
 		// decrease oxygen every round
 		for(let i=1;i <= pcount;i++) {
 			player[i].oxygen -= 20;
 		}
 		turn -= pcount;
+		round += 1;
+
+		if (round == 2){
+			popup('<p>Chapater 2 - The team began exploring the surface of Titan, discovering the occasional methane gusts in the atmosphere, which could potentially affect their progress. Driven by curiosity, Ling Ling ventured towards a profound canyon, uncovering a massive glacier, possibly a result of underground water source evaporation. Meanwhile, Sophia established a communication link, ensuring the team stayed connected and could relay their exploration findings.</p><img src="https://i.imgur.com/etYjdzI.jpg" width="250"  />')
+		}
+		if (round == 4)
+		{
+			popup('<p>Chapater 3 - Facing Challenges: The team encountered a sudden methane storm during their exploration, which is one of the meteorological features of Titan\'s atmosphere. They needed to find an appropriate shelter to protect themselves from the storm\'s onslaught. Sophia\'s wisdom helped them predict the storm\'s arrival and find a suitable refuge. Meanwhile, Maria\'s resilience ensured the team remained calm and weathered the storm.</p><img src="https://i.imgur.com/ZDVAEOU.jpg" width="250"  />')
+		}
+		if (round == 6)
+		{
+			popup('<p>Chapater 4 - Overcoming Obstacles: After the storm, the team discovered the presence of subterranean ice layers, which could contain valuable resources. Ling Ling\'s curiosity drove her once again, leading the team into underground caves where they indeed found some ice layers. Maria\'s wilderness skills helped them extract the ice, while Sophia used her scientific knowledge to determine the ice\'s composition, discovering that it contained useful hydrogen.</p><img src="https://i.imgur.com/R0vYYZa.jpg" width="250"  />')
+		}
+		if (round == 8)
+		{
+			popup('<p>Chapater 5 - Achieving Construction: With the new resources, the team returned to base, began constructing gas generators to utilize the hydrogen in the ice, and established other necessary facilities. Maria\'s leadership skills helped them build a safe and sustainable base, while Sophia\'s organizational abilities ensured the efficient use of resources. Ling Ling trained the team, enhancing their survival skills. They successfully established the base, fulfilled the pioneers\' mission, and paved the way for future explorations.</p><img src="https://i.imgur.com/3Fd0F6q.jpg" width="250"  />')
+		}
+		
 	}
+
+
 
 	var p = player[turn];
 	game.resetDice();
@@ -2907,8 +2933,6 @@ window.onload = function() {
 	document.getElementById("enlarge0token").innerHTML += '<img src="images/arrow_icon.png" height="40" width="136" alt="" />';
 	document.getElementById("enlarge20price").innerHTML += "<img src='images/free_parking_icon.png' height='80' width='72' alt='' style='position: relative; top: -20px;' />";
 	// document.getElementById("enlarge38token").innerHTML += '<img src="images/tax_icon.png" height="60" width="70" alt="" style="position: relative; top: -20px;" />';
-
-	corrections();
 
 	// Camp area corrections
 	$("<div>", {id: "jailpositionholder" }).appendTo("#jail");
