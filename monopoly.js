@@ -1272,15 +1272,15 @@ function popup(HTML, action, option) {
 	
 	// building options
 	} else if(option === "building") {
-		document.getElementById("popuptext").innerHTML += "<div><input type=\"button\" value=\"Oxygen\" id=\"popupOxygen\" /><input type=\"button\" value=\"Money\" id=\"popupMoney\" /></div>";
+		document.getElementById("popuptext").innerHTML += "<div><input type=\"button\" value=\"Gas\" id=\"popupOxygen\" /><input type=\"button\" value=\"Material\" id=\"popupMoney\" /></div>";
 
 		$("#popupOxygen, #popupMoney").on("click", function() {
 			$("#popupwrap").hide();
 			$("#popupbackground").fadeOut(400);
 		});
 
-		$("#popupOxygen").on("click", action("Oxygen"));
-		$("#popupMoney").on("click", action("Money"));
+		$("#popupOxygen").on("click", action("Gas"));
+		$("#popupMoney").on("click", action("Material"));
 
 	// Ok
 	} else if (option !== "blank") {
@@ -1866,7 +1866,7 @@ function subtractamount(amount, cause) {
 function gotojail() {
 	var p = player[turn];
 	addAlert(p.name + " was sent directly to jail.");
-	document.getElementById("landed").innerHTML = "You are in jail.";
+	document.getElementById("landed").innerHTML = "You are in camp.";
 
 	p.jail = true;
 	doublecount = 0;
@@ -2386,8 +2386,8 @@ function land(increasedRent) {
 	// Collect rent
 	// Collect resource
 	if (s.owner !== 0 && p.type == "Collector") {
-		var groupowned = true;
-		var rent;
+		// var groupowned = true;
+		// var rent;
 
 		// Railroads
 		// if (p.position == 5 || p.position == 15 || p.position == 25 || p.position == 35) {
@@ -2447,16 +2447,16 @@ function land(increasedRent) {
 		// addAlert(p.name + " paid $" + rent + " rent to " + player[s.owner].name + ".");
 		// p.pay(rent, s.owner);
 		// player[s.owner].money += rent;
-		if(s.type == "resource"){
+		if(s.type == "Material"){
 			p.money += 200;
 			document.getElementById("landed").innerHTML = "You landed on " + s.name + ". " + p.name + " collected " + 200 + "resouces.";
-		} else if(s.type == "oxygen"){
+		} else if(s.type == "Gas"){
 			p.oxygen += 50;
 			document.getElementById("landed").innerHTML = "You landed on " + s.name + ". " + p.name + " collected " + 50 + " oxygen.";
 		}
 
 		// document.getElementById("landed").innerHTML = "You landed on " + s.name + ". " + player[s.owner].name + " collected $" + rent + " rent.";
-	} else  {
+	} else if (s.owner > 0 && s.owner != turn && s.mortgage)  {
 		document.getElementById("landed").innerHTML = "You landed on " + s.name + ". Property is mortgaged; no rent was collected.";
 	}
 
@@ -2588,7 +2588,7 @@ function roll() {
 				}
 			} else {
 				$("#landed").show();
-				document.getElementById("landed").innerHTML = "You are in jail.";
+				document.getElementById("landed").innerHTML = "You are in camp.";
 
 				if (!p.human) {
 					popup(p.AI.alertList, game.next);
@@ -2685,7 +2685,7 @@ function play() {
 
 	if (p.jail) {
 		$("#landed").show();
-		document.getElementById("landed").innerHTML = "You are in jail.<input type='button' title='Pay $50 fine to get out of jail immediately.' value='Pay $50 fine' onclick='payfifty();' />";
+		document.getElementById("landed").innerHTML = "You are in camp.<input type='button' title='Pay $50 fine to get out of jail immediately.' value='Pay $50 fine' onclick='payfifty();' />";
 
 		if (p.communityChestJailCard || p.chanceJailCard) {
 			document.getElementById("landed").innerHTML += "<input type='button' id='gojfbutton' title='Use &quot;Get Out of Camp area Free&quot; card.' onclick='useJailCard();' value='Use Card' />";
@@ -2694,12 +2694,12 @@ function play() {
 		document.getElementById("nextbutton").title = "Roll the dice. If you throw doubles, you will get out of jail.";
 
 		if (p.jailroll === 0)
-			addAlert("This is " + p.name + "'s first turn in jail.");
+			addAlert("This is " + p.name + "'s first turn in camp.");
 		else if (p.jailroll === 1)
-			addAlert("This is " + p.name + "'s second turn in jail.");
+			addAlert("This is " + p.name + "'s second turn in camp.");
 		else if (p.jailroll === 2) {
 			document.getElementById("landed").innerHTML += "<div>NOTE: If you do not throw doubles after this roll, you <i>must</i> pay the $50 fine.</div>";
-			addAlert("This is " + p.name + "'s third turn in jail.");
+			addAlert("This is " + p.name + "'s third turn in camp.");
 		}
 
 		if (!p.human && p.AI.postBail()) {
