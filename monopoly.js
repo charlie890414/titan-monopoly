@@ -2751,6 +2751,8 @@ function setup() {
 		} else if (document.getElementById("player" + i + "ai").value === "1") {
 			p.human = false;
 			p.AI = new AITest(p);
+			p.name = document.getElementById("player" + i + "name").value;
+			p.role = document.getElementById("player" + i + "role").value;
 		}
 	}
 
