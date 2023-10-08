@@ -2903,8 +2903,6 @@ window.onload = function() {
 	document.getElementById("enlarge20price").innerHTML += "<img src='images/free_parking_icon.png' height='80' width='72' alt='' style='position: relative; top: -20px;' />";
 	// document.getElementById("enlarge38token").innerHTML += '<img src="images/tax_icon.png" height="60" width="70" alt="" style="position: relative; top: -20px;" />';
 
-	corrections();
-
 	// Camp area corrections
 	$("<div>", {id: "jailpositionholder" }).appendTo("#jail");
 	$("<span>").text("Camp area").appendTo("#jail");
