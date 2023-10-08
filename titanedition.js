@@ -36,7 +36,7 @@ function Card(text, action) {
 }
 
 function corrections() {
-	document.getElementById("cell24name").textContent = "blooming...";
+	document.getElementById("cell24name").textContent = "Senkyo Planitia";
 }
 
 function utiltext() {
