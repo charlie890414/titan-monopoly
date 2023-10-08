@@ -1305,7 +1305,7 @@ function addAlert(alertText) {
 	}
 }
 
-function popup(HTML, action, action2, option) {
+function popup(HTML, action, option, action2) {
 	document.getElementById("popuptext").innerHTML = HTML;
 	document.getElementById("popup").style.width = "300px";
 	document.getElementById("popup").style.top = "0px";
@@ -1320,7 +1320,10 @@ function popup(HTML, action, action2, option) {
 	if (typeof action !== "function") {
 		action = null;
 	}
-
+	if (typeof action2 !== "function") {
+		action = null;
+	}
+	
 	// Yes/No
 	if (option === "yes/no") {
 		document.getElementById("popuptext").innerHTML += "<div><input type=\"button\" value=\"Yes\" id=\"popupyes\" /><input type=\"button\" value=\"No\" id=\"popupno\" /></div>";
@@ -2717,10 +2720,10 @@ function play() {
 		first_round = 0;
 	}
 	if (round == 1 && turn == 2){
-		popup('<p>Incident Description: <br>A female member is experiencing an unexpected menstrual period, and is feeling physically unwell as a result.</p><p>Would you be willing to help him?<br>Option Yes: Provide survival resources (such as pain relief medication) to assist her.<br>Impact: Survival Resources -5.<br>Option No: Ask her to continue working, without providing special care.<br>Impact: Team morale decreases, ' + player[turn-1].name + ' Resources -10.</p><img src="https://i.imgur.com/X9qLzyo.jpg" width="250"  />',function() {addO2(-5)} ,function() {min_last_one(10)}, "yes/no")
+		popup('<p>Incident Description: <br>A female member is experiencing an unexpected menstrual period, and is feeling physically unwell as a result.</p><p>Would you be willing to help him?<br>Option Yes: Provide survival resources (such as pain relief medication) to assist her.<br>Impact: Survival Resources -5.<br>Option No: Ask her to continue working, without providing special care.<br>Impact: Team morale decreases, ' + player[turn-1].name + ' Resources -10.</p><img src="https://i.imgur.com/X9qLzyo.jpg" width="250"  />',function() {addO2(-5)}, "yes/no",function() {min_last_one(10)})
 	}
 	if (round == 2 && turn == 3){
-		popup('<p>Gender-Equal Equipment Design: <br>Designing new space equipment, but the prototype does not consider the needs of females for' + player[turn-1].name + ' Should it be redesigned?<br>Option Yes: Redesign the equipment to accommodate all genders.<br>Impact: Construction Resources -15.<br>Option No:Continue with the original equipment design.<br>Impact: Team morale decreases, ' + player[turn-1].name + ' O2 -10.</p><img src="https://i.imgur.com/etYjdzI.jpg" width="250"  />',function() {addamount(-15)} ,function() {min_last_one(10)}, "yes/no")
+		popup('<p>Gender-Equal Equipment Design: <br>Designing new space equipment, but the prototype does not consider the needs of females for' + player[turn-1].name + ' Should it be redesigned?<br>Option Yes: Redesign the equipment to accommodate all genders.<br>Impact: Construction Resources -15.<br>Option No:Continue with the original equipment design.<br>Impact: Team morale decreases, ' + player[turn-1].name + ' O2 -10.</p><img src="https://i.imgur.com/etYjdzI.jpg" width="250"  />',function() {addamount(-15)}, "yes/no",function() {min_last_one(10)})
 	}
 	if (turn > pcount) {
 		// decrease oxygen every round
