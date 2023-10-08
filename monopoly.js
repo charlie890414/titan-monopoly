@@ -333,6 +333,8 @@ function Game() {
 	document.getElementById("trade-leftp-money").onchange = tradeMoneyOnChange;
 	document.getElementById("trade-rightp-money").onchange = tradeMoneyOnChange;
 
+
+
 	var resetTrade = function(initiator, recipient, allowRecipientToBeChanged) {
 		var currentSquare;
 		var currentTableRow;
@@ -614,6 +616,7 @@ function Game() {
 		var recipient = currentRecipient;
 		var property = new Array(40);
 		var money;
+		var oxygen;
 		var communityChestJailCard;
 		var chanceJailCard;
 
@@ -647,7 +650,10 @@ function Game() {
 		money = parseInt(document.getElementById("trade-leftp-money").value, 10) || 0;
 		money -= parseInt(document.getElementById("trade-rightp-money").value, 10) || 0;
 
-		var trade = new Trade(initiator, recipient, money, property, communityChestJailCard, chanceJailCard);
+		oxygen = parseInt(document.getElementById("trade-leftp-oxygen").value, 10) || 0;
+		oxygen -= parseInt(document.getElementById("trade-rightp-oxygen").value, 10) || 0;
+
+		var trade = new Trade(initiator, recipient, money, oxygen, property, communityChestJailCard, chanceJailCard);
 
 		return trade;
 	};
@@ -708,6 +714,12 @@ function Game() {
 			document.getElementById("trade-leftp-money").value = tradeObj.getMoney() + "";
 		} else {
 			document.getElementById("trade-rightp-money").value = (-tradeObj.getMoney()) + "";
+		}
+
+		if (tradeObj.getOxygen() > 0) {
+			document.getElementById("trade-leftp-oxygen").value = tradeObj.getOxygen() + "";
+		} else {
+			document.getElementById("trade-rightp-oxygen").value = (-tradeObj.getOxygen()) + "";
 		}
 
 	};
@@ -779,6 +791,7 @@ function Game() {
 		}
 
 		money = tradeObj.getMoney();
+		oxygen = tradeObj.getOxygen();
 		initiator = tradeObj.getInitiator();
 		recipient = tradeObj.getRecipient();
 
@@ -790,6 +803,16 @@ function Game() {
 		} else if (money < 0 && -money > recipient.money) {
 			document.getElementById("trade-rightp-money").value = recipient.name + " does not have $" + (-money) + ".";
 			document.getElementById("trade-rightp-money").style.color = "red";
+			return false;
+		}
+
+		if (oxygen > 0 && oxygen > initiator.oxygen) {
+			document.getElementById("trade-leftp-oxygen").value = initiator.name + " does not have o2" + oxygen + ".";
+			document.getElementById("trade-leftp-oxygen").style.color = "red";
+			return false;
+		} else if (oxygen < 0 && -oxygen > recipient.oxygen) {
+			document.getElementById("trade-rightp-oxygen").value = recipient.name + " does not have o2" + (-oxygen) + ".";
+			document.getElementById("trade-rightp-oxygen").style.color = "red";
 			return false;
 		}
 
@@ -861,6 +884,21 @@ function Game() {
 			addAlert(initiator.name + " received $" + money + " from " + recipient.name + ".");
 		}
 
+		// Exchange oxygen.
+		if (oxygen > 0) {
+			initiator.payOxygen(oxygen, recipient.index);
+			recipient.oxygen += oxygen;
+
+			addAlert(recipient.name + " received o2" + oxygen + " from " + initiator.name + ".");
+		} else if (oxygen < 0) {
+			oxygen = -oxygen;
+
+			recipient.payOxygen(oxygen, initiator.index);
+			initiator.oxygen += oxygen;
+
+			addAlert(initiator.name + " received O2" + oxygen + " from " + recipient.name + ".");
+		}
+
 		updateOwned();
 		updateMoney();
 
@@ -889,6 +927,7 @@ function Game() {
 
 		var tradeObj = readTrade();
 		var money = tradeObj.getMoney();
+		var oxygen = tradeObj.getOxygen();
 		var initiator = tradeObj.getInitiator();
 		var recipient = tradeObj.getRecipient();
 		var reversedTradeProperty = [];
@@ -924,7 +963,7 @@ function Game() {
 			return false;
 		}
 
-		var reversedTrade = new Trade(recipient, initiator, -money, reversedTradeProperty, -tradeObj.getCommunityChestJailCard(), -tradeObj.getChanceJailCard());
+		var reversedTrade = new Trade(recipient, initiator, -money, -oxygen, reversedTradeProperty, -tradeObj.getCommunityChestJailCard(), -tradeObj.getChanceJailCard());
 
 		if (recipient.human) {
 
@@ -1151,6 +1190,23 @@ function Player(name, color) {
 			return false;
 		}
 	};
+
+	this.payOxygen = function (amount, creditor) {
+		if (amount <= this.oxygen) {
+			this.oxygen -= amount;
+
+			updateMoney();
+
+			return true;
+		} else {
+			this.oxygen -= amount;
+			this.creditor = creditor;
+
+			updateMoney();
+
+			return false;
+		}
+	};
 }
 
 // paramaters:
@@ -1160,7 +1216,7 @@ function Player(name, color) {
 // property: array of integers, length: 40
 // communityChestJailCard: integer, 1 means offered, -1 means requested, 0 means neither
 // chanceJailCard: integer, 1 means offered, -1 means requested, 0 means neither
-function Trade(initiator, recipient, money, property, communityChestJailCard, chanceJailCard) {
+function Trade(initiator, recipient, money, oxygen, property, communityChestJailCard, chanceJailCard) {
 	// For each property and get out of jail free cards, 1 means offered, -1 means requested, 0 means neither.
 
 	this.getInitiator = function() {
@@ -1177,6 +1233,10 @@ function Trade(initiator, recipient, money, property, communityChestJailCard, ch
 
 	this.getMoney = function() {
 		return money;
+	};
+
+	this.getOxygen = function() {
+		return oxygen;
 	};
 
 	this.getCommunityChestJailCard = function() {
@@ -2451,7 +2511,7 @@ function land(increasedRent) {
 		// player[s.owner].money += rent;
 		if(s.type == "Material"){
 			p.money += 200;
-			document.getElementById("landed").innerHTML = "You landed on " + s.name + ". " + p.name + " collected " + 200 + "resouces.";
+			document.getElementById("landed").innerHTML = "You landed on " + s.name + ". " + p.name + " collected " + 200 + " resouces.";
 		} else if(s.type == "O<sub>2</sub>"){
 			p.oxygen += 50;
 			document.getElementById("landed").innerHTML = "You landed on " + s.name + ". " + p.name + " collected " + 50 + " oxygen.";
