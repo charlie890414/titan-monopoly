@@ -2471,7 +2471,7 @@ function land(increasedRent) {
 		updatePosition();
 
 		if (p.human) {
-			popup("<div>Go to jail. Go directly to Camp area. Do not pass GO. Do not collect $200.</div>", gotojail);
+			popup("<div>Go directly to Camp area. Do not pass GO. Do not collect $200.</div>", gotojail);
 		} else {
 			gotojail();
 		}
