@@ -1269,6 +1269,18 @@ function popup(HTML, action, option) {
 		});
 
 		$("#popupyes").on("click", action);
+	
+	// building options
+	} else if(option === "building") {
+		document.getElementById("popuptext").innerHTML += "<div><input type=\"button\" value=\"Oxygen\" id=\"popupOxygen\" /><input type=\"button\" value=\"Money\" id=\"popupMoney\" /></div>";
+
+		$("#popupOxygen, #popupMoney").on("click", function() {
+			$("#popupwrap").hide();
+			$("#popupbackground").fadeOut(400);
+		});
+
+		$("#popupOxygen").on("click", action("Oxygen"));
+		$("#popupMoney").on("click", action("Money"));
 
 	// Ok
 	} else if (option !== "blank") {
@@ -1279,7 +1291,8 @@ function popup(HTML, action, option) {
 			$("#popupwrap").hide();
 			$("#popupbackground").fadeOut(400);
 		}).on("click", action);
-
+	
+	
 	}
 
 	// Show using animation.
@@ -1643,14 +1656,14 @@ function updateOption() {
 			buyhousebutton.disabled = false;
 			sellhousebutton.disabled = false;
 
-			buyhousebutton.value = "Buy house ($" + sq.houseprice + ")";
+			buyhousebutton.value = "Build house ($" + sq.houseprice + ")";
 			sellhousebutton.value = "Sell house ($" + (sq.houseprice * 0.5) + ")";
-			buyhousebutton.title = "Buy a house for $" + sq.houseprice;
+			buyhousebutton.title = "Build a house for $" + sq.houseprice;
 			sellhousebutton.title = "Sell a house for $" + (sq.houseprice * 0.5);
 
 			if (sq.house == 4) {
-				buyhousebutton.value = "Buy hotel ($" + sq.houseprice + ")";
-				buyhousebutton.title = "Buy a hotel for $" + sq.houseprice;
+				buyhousebutton.value = "Build hotel ($" + sq.houseprice + ")";
+				buyhousebutton.title = "Build a hotel for $" + sq.houseprice;
 			}
 			if (sq.hotel == 1) {
 				$("#buyhousebutton").hide();
@@ -2279,14 +2292,19 @@ function buy() {
 
 		property.owner = turn;
 		updateMoney();
-		addAlert(p.name + " bought " + property.name + " for " + property.pricetext + ".");
+		addAlert(p.name + " built " + property.name + " for " + property.pricetext + ".");
+
+		
+		popup("<p>" + p.name + ", choose one building type</p>", function(type) {
+			property.type = type;
+		}, "building");
 
 		updateOwned();
 
 		$("#landed").hide();
 
 	} else {
-		popup("<p>" + p.name + ", you need $" + (property.price - p.money) + " more to buy " + property.name + ".</p>");
+		popup("<p>" + p.name + ", you need $" + (property.price - p.money) + " more to build on " + property.name + ".</p>");
 	}
 }
 
@@ -2358,7 +2376,7 @@ function land(increasedRent) {
 				buy();
 			}
 		} else {
-			document.getElementById("landed").innerHTML = "<div>You landed on <a href='javascript:void(0);' onmouseover='showdeed(" + p.position + ");' onmouseout='hidedeed();' class='statscellcolor'>" + s.name + "</a>.<input " + (p.role == "Pioneer" ? "": "disabled") + " type='button' onclick='buy();' value='Buy ($" + s.price + ")' title='Buy " + s.name + " for " + s.pricetext + ".'/></div>";
+			document.getElementById("landed").innerHTML = "<div>You landed on <a href='javascript:void(0);' onmouseover='showdeed(" + p.position + ");' onmouseout='hidedeed();' class='statscellcolor'>" + s.name + "</a>.<input " + (p.role == "Pioneer" ? "": "disabled") + " type='button' onclick='buy();' value='Build ($" + s.price + ")' title='Build " + s.name + " for " + s.pricetext + ".'/></div>";
 		}
 
 
@@ -2366,70 +2384,74 @@ function land(increasedRent) {
 	}
 
 	// Collect rent
-	if (s.owner !== 0 && s.owner != turn && !s.mortgage) {
+	// Collect resource
+	if (s.owner !== 0) {
 		var groupowned = true;
 		var rent;
 
 		// Railroads
-		if (p.position == 5 || p.position == 15 || p.position == 25 || p.position == 35) {
-			if (increasedRent) {
-				rent = 25;
-			} else {
-				rent = 12.5;
-			}
+		// if (p.position == 5 || p.position == 15 || p.position == 25 || p.position == 35) {
+		// 	if (increasedRent) {
+		// 		rent = 25;
+		// 	} else {
+		// 		rent = 12.5;
+		// 	}
 
-			if (s.owner == square[5].owner) {
-				rent *= 2;
-			}
-			if (s.owner == square[15].owner) {
-				rent *= 2;
-			}
-			if (s.owner == square[25].owner) {
-				rent *= 2;
-			}
-			if (s.owner == square[35].owner) {
-				rent *= 2;
-			}
+		// 	if (s.owner == square[5].owner) {
+		// 		rent *= 2;
+		// 	}
+		// 	if (s.owner == square[15].owner) {
+		// 		rent *= 2;
+		// 	}
+		// 	if (s.owner == square[25].owner) {
+		// 		rent *= 2;
+		// 	}
+		// 	if (s.owner == square[35].owner) {
+		// 		rent *= 2;
+		// 	}
 
-		} else if (p.position === 12) {
-			if (increasedRent || square[28].owner == s.owner) {
-				rent = (die1 + die2) * 10;
-			} else {
-				rent = (die1 + die2) * 4;
-			}
+		// } else if (p.position === 12) {
+		// 	if (increasedRent || square[28].owner == s.owner) {
+		// 		rent = (die1 + die2) * 10;
+		// 	} else {
+		// 		rent = (die1 + die2) * 4;
+		// 	}
 
-		} else if (p.position === 28) {
-			if (increasedRent || square[12].owner == s.owner) {
-				rent = (die1 + die2) * 10;
-			} else {
-				rent = (die1 + die2) * 4;
-			}
+		// } else if (p.position === 28) {
+		// 	if (increasedRent || square[12].owner == s.owner) {
+		// 		rent = (die1 + die2) * 10;
+		// 	} else {
+		// 		rent = (die1 + die2) * 4;
+		// 	}
 
-		} else {
+		// } else {
 
-			for (var i = 0; i < 40; i++) {
-				sq = square[i];
-				if (sq.groupNumber == s.groupNumber && sq.owner != s.owner) {
-					groupowned = false;
-				}
-			}
+		// 	for (var i = 0; i < 40; i++) {
+		// 		sq = square[i];
+		// 		if (sq.groupNumber == s.groupNumber && sq.owner != s.owner) {
+		// 			groupowned = false;
+		// 		}
+		// 	}
 
-			if (!groupowned) {
-				rent = s.baserent;
-			} else {
-				if (s.house === 0) {
-					rent = s.baserent * 2;
-				} else {
-					rent = s["rent" + s.house];
-				}
-			}
-		}
+		// 	if (!groupowned) {
+		// 		rent = s.baserent;
+		// 	} else {
+		// 		if (s.house === 0) {
+		// 			rent = s.baserent * 2;
+		// 		} else {
+		// 			rent = s["rent" + s.house];
+		// 		}
+		// 	}
+		// }
 
-		addAlert(p.name + " paid $" + rent + " rent to " + player[s.owner].name + ".");
-		p.pay(rent, s.owner);
-		player[s.owner].money += rent;
+		// addAlert(p.name + " paid $" + rent + " rent to " + player[s.owner].name + ".");
+		// p.pay(rent, s.owner);
+		// player[s.owner].money += rent;
+		p.money += 200;
+		p.oxygen += 50;
 
-		document.getElementById("landed").innerHTML = "You landed on " + s.name + ". " + player[s.owner].name + " collected $" + rent + " rent.";
+		// document.getElementById("landed").innerHTML = "You landed on " + s.name + ". " + player[s.owner].name + " collected $" + rent + " rent.";
+		document.getElementById("landed").innerHTML = "You landed on " + s.name + ". " + p.name + " collected " + 200 + "resouces and" + 50 + " oxygen.";
 	} else if (s.owner > 0 && s.owner != turn && s.mortgage) {
 		document.getElementById("landed").innerHTML = "You landed on " + s.name + ". Property is mortgaged; no rent was collected.";
 	}

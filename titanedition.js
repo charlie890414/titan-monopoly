@@ -15,6 +15,7 @@ function Square(name, pricetext, color, price, groupNumber, baserent, rent1, ren
 	this.rent4 = (rent4 || 0);
 	this.rent5 = (rent5 || 0);
 	this.landcount = 0;
+	this.buildingType = null;
 
 	if (groupNumber === 3 || groupNumber === 4) {
 		this.houseprice = 50;
