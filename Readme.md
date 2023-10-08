@@ -1,5 +1,5 @@
 # Project detail（下方有中文版）
-![Uploading photo_2023-10-08_19-27-37.jpg…]()
+![photo_2023-10-08_19-28-03](https://github.com/charlie890414/titan-monopoly/assets/26687231/5dd09967-cdfe-4df5-8feb-c29167d45295)
 
 # Titan Explore: Game Introduction
 
