@@ -1272,14 +1272,14 @@ function popup(HTML, action, option) {
 	
 	// building options
 	} else if(option === "building") {
-		document.getElementById("popuptext").innerHTML += "<div><input type=\"button\" value=\"Gas\" id=\"popupOxygen\" /><input type=\"button\" value=\"Material\" id=\"popupMoney\" /></div>";
+		document.getElementById("popuptext").innerHTML += "<div><input type=\"button\" value=\"O<sub>2</sub>\" id=\"popupOxygen\" /><input type=\"button\" value=\"Material\" id=\"popupMoney\" /></div>";
 
 		$("#popupOxygen, #popupMoney").on("click", function() {
 			$("#popupwrap").hide();
 			$("#popupbackground").fadeOut(400);
 		});
 
-		$("#popupOxygen").on("click", action("Gas"));
+		$("#popupOxygen").on("click", action("O<sub>2</sub>"));
 		$("#popupMoney").on("click", action("Material"));
 
 	// Ok
@@ -1389,7 +1389,7 @@ function updateMoney() {
 	var p = player[turn];
 
 	document.getElementById("pmoney").innerHTML = "Material: " + p.money;
-	document.getElementById("poxygen").innerHTML = "     Gas: " + p.oxygen;
+	document.getElementById("poxygen").innerHTML = "     O<sub>2</sub>: " + p.oxygen;
 	document.getElementById("playerphoto").src = `images/${p.name}.png`;
 	$(".money-bar-row").hide();
 
@@ -2450,7 +2450,7 @@ function land(increasedRent) {
 		if(s.type == "Material"){
 			p.money += 200;
 			document.getElementById("landed").innerHTML = "You landed on " + s.name + ". " + p.name + " collected " + 200 + "resouces.";
-		} else if(s.type == "Gas"){
+		} else if(s.type == "O<sub>2</sub>"){
 			p.oxygen += 50;
 			document.getElementById("landed").innerHTML = "You landed on " + s.name + ". " + p.name + " collected " + 50 + " oxygen.";
 		}
@@ -2634,7 +2634,12 @@ function play() {
 	if (turn > pcount) {
 		// decrease oxygen every round
 		for(let i=1;i <= pcount;i++) {
-			player[i].oxygen -= 20;
+			player[i].oxygen -= 100;
+			if(player[i].oxygen <= 0) {
+				popup('<p>Game Over - ' + player[i].name + ' ran out of oxygen.</p><img src="images/gameover.jpg" width="250"  />', function(){
+					location.reload();
+				});
+			}
 		}
 		turn -= pcount;
 		round += 1;
@@ -2652,7 +2657,7 @@ function play() {
 		}
 		if (round == 8)
 		{
-			popup('<p>Chapater 5 - Achieving Construction: With the new resources, the team returned to base, began constructing gas generators to utilize the hydrogen in the ice, and established other necessary facilities. Maria\'s leadership skills helped them build a safe and sustainable base, while Sophia\'s organizational abilities ensured the efficient use of resources. Ling Ling trained the team, enhancing their survival skills. They successfully established the base, fulfilled the pioneers\' mission, and paved the way for future explorations.</p><img src="https://i.imgur.com/3Fd0F6q.jpg" width="250"  />')
+			popup('<p>Chapater 5 - Achieving Construction: With the new resources, the team returned to base, began constructing O<sub>2</sub> generators to utilize the hydrogen in the ice, and established other necessary facilities. Maria\'s leadership skills helped them build a safe and sustainable base, while Sophia\'s organizational abilities ensured the efficient use of resources. Ling Ling trained the team, enhancing their survival skills. They successfully established the base, fulfilled the pioneers\' mission, and paved the way for future explorations.</p><img src="https://i.imgur.com/3Fd0F6q.jpg" width="250"  />')
 		}
 		
 	}
