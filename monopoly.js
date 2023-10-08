@@ -2634,7 +2634,7 @@ function play() {
 	if (turn > pcount) {
 		// decrease oxygen every round
 		for(let i=1;i <= pcount;i++) {
-			player[i].oxygen -= 100;
+			player[i].oxygen -= 20;
 			if(player[i].oxygen <= 0) {
 				popup('<p>Game Over - ' + player[i].name + ' ran out of oxygen.</p><img src="images/gameover.jpg" width="250"  />', function(){
 					location.reload();
