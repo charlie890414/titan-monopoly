@@ -1321,7 +1321,7 @@ function popup(HTML, action, option, action2) {
 		action = null;
 	}
 	if (typeof action2 !== "function") {
-		action = null;
+		action2 = null;
 	}
 	
 	// Yes/No
