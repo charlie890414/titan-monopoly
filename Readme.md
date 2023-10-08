@@ -1,4 +1,5 @@
 # Project detail（下方有中文版）
+![Uploading photo_2023-10-08_19-27-37.jpg…]()
 
 # Titan Explore: Game Introduction
 
