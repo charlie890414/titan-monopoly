@@ -2385,7 +2385,7 @@ function land(increasedRent) {
 
 	// Collect rent
 	// Collect resource
-	if (s.owner !== 0) {
+	if (s.owner !== 0 && p.type == "Collector") {
 		var groupowned = true;
 		var rent;
 
@@ -2447,12 +2447,16 @@ function land(increasedRent) {
 		// addAlert(p.name + " paid $" + rent + " rent to " + player[s.owner].name + ".");
 		// p.pay(rent, s.owner);
 		// player[s.owner].money += rent;
-		p.money += 200;
-		p.oxygen += 50;
+		if(s.type == "resource"){
+			p.money += 200;
+			document.getElementById("landed").innerHTML = "You landed on " + s.name + ". " + p.name + " collected " + 200 + "resouces.";
+		} else if(s.type == "oxygen"){
+			p.oxygen += 50;
+			document.getElementById("landed").innerHTML = "You landed on " + s.name + ". " + p.name + " collected " + 50 + " oxygen.";
+		}
 
 		// document.getElementById("landed").innerHTML = "You landed on " + s.name + ". " + player[s.owner].name + " collected $" + rent + " rent.";
-		document.getElementById("landed").innerHTML = "You landed on " + s.name + ". " + p.name + " collected " + 200 + "resouces and" + 50 + " oxygen.";
-	} else if (s.owner > 0 && s.owner != turn && s.mortgage) {
+	} else  {
 		document.getElementById("landed").innerHTML = "You landed on " + s.name + ". Property is mortgaged; no rent was collected.";
 	}
 
